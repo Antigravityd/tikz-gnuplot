@@ -12,4 +12,4 @@ Gnuplot with  =set terminal tikz=  outputs Latex code for which one needs a pack
 
 #+end_src
 
-The current files were taken from commit e156a52ce9a101427b26afff2ef5cf8b5e43a319, and have been minimally tested with gnuplot 5.4.3 and texlive 20210325
+The current files were taken from Gnuplot commit e156a52ce9a101427b26afff2ef5cf8b5e43a319, and have been minimally tested with gnuplot 5.4.3 and texlive 20210325
