@@ -1,162 +1,66 @@
 % \iffalse
-%<*driver>
-\ProvidesFile{gnuplot-lua-tikz.dtx}
-%</driver>
-%<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
-%<package>\ProvidesPackage{gnuplot-lua-tikz}
-%<*package>
-[2021/10/08 22:39:00 (rev. 115) GNUPLOT Lua terminal style]
-%</package>
+%
+% Part of Will Robertson's DTXGALLERY bundle, version 1.
+%
+%<*internal>
+\iffalse
+%</internal>
+%<*internal>
+\fi
+\begingroup
+%</internal>
+%<*batchfile>
+\input docstrip.tex
+\keepsilent\askforoverwritefalse
+\nopreamble\nopostamble
+\generate{\file{\jobname.sty}{\from{\jobname.dtx}{package}}}
+%</batchfile>
+%<batchfile>\endbatchfile
+%<*internal>
+\generate{\file{\jobname.ins}{\from{\jobname.dtx}{batchfile}}}
+\endgroup
+%</internal>
 %
 %<*driver>
 \documentclass{ltxdoc}
-\usepackage{gnuplot-lua-tikz}[2021/10/08]
+\usepackage{gnuplot-lua-tikz,fancyvrb}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
+%\OnlyDescription
 \begin{document}
-  \DocInput{gnuplot-lua-tikz.dtx}
-  \PrintChanges
-  \PrintIndex
+
 \end{document}
 %</driver>
+%
 % \fi
 %
-% \CheckSum{443}
+% \section{The documented source code}
 %
-% \CharacterTable
-%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
-%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
-%   Digits        \0\1\2\3\4\5\6\7\8\9
-%   Exclamation   \!     Double quote  \"     Hash (number) \#
-%   Dollar        \$     Percent       \%     Ampersand     \&
-%   Acute accent  \'     Left paren    \(     Right paren   \)
-%   Asterisk      \*     Plus          \+     Comma         \,
-%   Minus         \-     Point         \.     Solidus       \/
-%   Colon         \:     Semicolon     \;     Less than     \<
-%   Equals        \=     Greater than  \>     Question mark \?
-%   Commercial at \@     Left bracket  \[     Backslash     \\
-%   Right bracket \]     Circumflex    \^     Underscore    \_
-%   Grave accent  \`     Left brace    \{     Vertical bar  \|
-%   Right brace   \}     Tilde         \~}
-%
-%
-% \changes{5.4}{2022/05/29}{Converted to DTX file}
-%
-% \DoNotIndex{\newcommand,\newenvironment}
-%
-% \providecommand*{\url}{\texttt}
-% \GetFileInfo{gnuplot-lua-tikz.dtx}
-% \title{The \textsf{gnuplot-lua-tikz} package}
-% \author{Duncan Wilkie \\ \url{duncannwilkie@gmail.com}}
-% \date{\fileversion~from \filedate}
-%
-% \maketitle
-%
-% \section{Introduction}
-%
-% Put text here.
-%
-% \section{Usage}
-%
-% Put text here.
-%
-%
-% \DescribeMacro{\gpchecktikzversion}
-%
-%
-% \DescribeMacro{\gploadimage}
-%
-%
-% \DescribeMacro{\gprawimage}
-%
-%
-% \DescribeMacro{\gpsetvar}
-%
-%
-% \DescribeMacro{\gpgetvar}
-%
-%
-% \DescribeMacro{\gpfill}
-%
-%
-% \DescribeMacro{\gpsetlinewidth}
-%
-%
-% \DescribeMacro{\gpsetlinetype}
-%
-%
-% \DescribeMacro{\gpsetdashtype}
-%
-%
-% \DescribeMacro{\gpsetpointsize}
-%
-%
-% \DescribeMacro{\gpcolor}
-%
-%
-% \DescribeMacro{\gppoint}
-%
-%
-% \DescribeMacro{\gp}
-%
-%
-% \DescribeMacro{\gpcalccharsize}
-%
-%
-% \DescribeMacro{\gpdefrectangularnode}
-%
-%
-% \DescribeMacro{\gpsetbgcolor}
-%
-%
-% \DescribeMacro{\gpbboxborder}
-%
-%
-% \DescribeMacro{\gpdashlength}
-%
-%
-% \DescribeMacro{\gpcoloredlines}
-%
-%
-% \DescribeMacro{\gpmonochromelines}
-%
-
-%
-% \StopEventually{}
-%
-% \section{Implementation}
-%
-% \iffalse
+%    \begin{macrocode}
 %<*package>
-% \fi
-%
-%    \begin{macrocode}
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{gnuplot-lua-tikz}%
-          [2021/10/08 22:39:00 (rev. 115) GNUPLOT Lua terminal style]
 \RequirePackage{tikz}
+
 \usetikzlibrary{arrows,patterns,plotmarks,backgrounds,fit}
-%    \end{macrocode}
-%
-% \begin{macro}{\gpchecktikzversion}
-%    \begin{macrocode}
+
+
+
+
+
+
+
+
+
+
+
 \def\gpchecktikzversion#1.#2\relax{%
 \ifnum#1<2%
   \errmessage{PGF/TikZ version >= 2.0 is required!}%
 \fi}
 \expandafter\gpchecktikzversion\pgfversion\relax
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gnuplot@output@ps}
-%    \begin{macrocode}
+
 \def\gnuplot@output@ps{ps} % required for comparison in \gprawimage
-%    \end{macrocode}
-% \end{macro}
-%
-%    \begin{macrocode}
+
 \expandafter\def\csname gnuplot@select@driver@pgfsys-dvi.def\endcsname     {ps}
 \expandafter\def\csname gnuplot@select@driver@pgfsys-dvipdfm.def\endcsname {pdf}
 \expandafter\def\csname gnuplot@select@driver@pgfsys-dvipdfmx.def\endcsname{pdf}
@@ -167,20 +71,28 @@
 \expandafter\def\csname gnuplot@select@driver@pgfsys-textures.def\endcsname{ps}
 \expandafter\def\csname gnuplot@select@driver@pgfsys-vtex.def\endcsname    {ps}
 \expandafter\def\csname gnuplot@select@driver@pgfsys-xetex.def\endcsname   {pdf}
+
 \ifcsname gnuplot@select@driver@\pgfsysdriver\endcsname
   \edef\gnuplot@output@mode{\csname gnuplot@select@driver@\pgfsysdriver\endcsname}
 \else
   \errmessage{The driver \pgfsysdriver\space is not supported by gnuplot-lua-tikz}%
 \fi
+
 \ifcsname PackageWarning\endcsname
   \let\gnuplot@packagewarning\PackageWarning
 \else
   \def\gnuplot@packagewarning#1#2{\immediate\write-1{Package #1 Warning: #2}}
 \fi
-%    \end{macrocode}
-%
-% \begin{macro}{\gp@rawimage@pdf}
-%    \begin{macrocode}
+
+
+
+
+
+
+
+
+
+
 \def\gp@rawimage@pdf#1#2#3#4#5#6{%
   \def\gp@tempa{cmyk}%
   \def\gp@tempb{#1}%
@@ -195,12 +107,6 @@
   \pgfsysprotocol@literalbuffered{/BPC 8 /F /AHx ID}%
   \pgfsysprotocol@literal{#6 > EI}%
 }
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gp@rawimage@ps}
-%    \begin{macrocode}
 \def\gp@rawimage@ps#1#2#3#4#5#6{%
   \def\gp@tempa{cmyk}%
   \def\gp@tempb{#1}%
@@ -216,44 +122,23 @@
   \pgfsysprotocol@literalbuffered{false \gp@temp\space colorimage}%
   \pgfsysprotocol@literal{#6 >}%
 }
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gp@rawimage@html}
-%    \begin{macrocode}
 \def\gp@rawimage@html#1#2#3#4#5#6{%
   \gnuplot@packagewarning{gnuplot-lua-tikz}{%
     \noexpand\gp@rawimage is not implemented for \gnuplot@output@mode\space output.%
   }%
 }
-%    \end{macrocode}
-% \end{macro}
-%
-%    \begin{macrocode}
+
+
 \expandafter\let\expandafter\gp@rawimage\csname gp@rawimage@\gnuplot@output@mode\endcsname
-%    \end{macrocode}
-%
-% \begin{macro}{\gploadimage}
-%    \begin{macrocode}
+
 \def\gploadimage#1#2#3#4#5{%
   \pgftext[left,bottom,x=#1cm,y=#2cm] {\pgfimage[interpolate=false,width=#3cm,height=#4cm]{#5}};%
 }
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gp@set@size}
-%    \begin{macrocode}
+
 \def\gp@set@size#1{%
   \def\gp@image@size{#1}%
 }
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gp@rawimage@}
-%    \begin{macrocode}
+
 \def\gp@rawimage@#1#2#3#4#5#6#7#8{%
   \tikz@scan@one@point\gp@set@size(#6,#7)\relax%
   \tikz@scan@one@point\pgftransformshift(#2,#3)\relax%
@@ -264,12 +149,9 @@
     \pgfsys@endpurepicture%
   }%
 }
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gprawimage}
-%    \begin{macrocode}
+
+
+
 \def\gprawimage#1#2#3#4#5#6#7#8#9{%
   \ifx&#9&%
     \gp@rawimage@{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}%
@@ -281,117 +163,93 @@
     \fi
   \fi
 }
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gnuplottexextension@lua}
-%    \begin{macrocode}
+
+
+
+
+
+
 \def\gnuplottexextension@lua{\string tex}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gnuplottexextension@tikz}
-%    \begin{macrocode}
 \def\gnuplottexextension@tikz{\string tex}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gpsetvar}
-%    \begin{macrocode}
+
+
+
+
+
 \def\gpsetvar#1#2{%
   \expandafter\xdef\csname gp@var@#1\endcsname{#2}
 }
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gpgetvar}
-%    \begin{macrocode}
+
 \def\gpgetvar#1{%
   \csname gp@var@#1\endcsname %
 }
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gpfill}
-%    \begin{macrocode}
+
+
+
+
+
+
 \def\gpfill#1{\path[line width=0.1\gpbaselw,draw,fill,#1]}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gpsetlinewidth}
-%    \begin{macrocode}
+
+
 \def\gpsetlinewidth#1{\pgfsetlinewidth{#1\gpbaselw}}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gpsetlinetype}
-%    \begin{macrocode}
+
+
 \def\gpsetlinetype#1{\tikzset{gp path/.style={#1,#1 add}}}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gpsetdashtype}
-%    \begin{macrocode}
+
+
 \def\gpsetdashtype#1{\tikzset{gp path/.append style={#1}}}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gpsetpointsize}
-%    \begin{macrocode}
+
+
 \def\gpsetpointsize#1{\tikzset{gp point/.style={mark size=#1\gpbasems}}}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gpcolor}
-%    \begin{macrocode}
+
+
 \def\gpcolor#1{\tikzset{global #1}}
-%    \end{macrocode}
-% \end{macro}
-%
-%    \begin{macrocode}
 \tikzset{rgb color/.code={\pgfutil@definecolor{.}{rgb}{#1}\tikzset{color=.}}}
 \tikzset{global rgb color/.code={\pgfutil@definecolor{.}{rgb}{#1}\pgfutil@color{.}}}
 \tikzset{global color/.code={\pgfutil@color{#1}}}
+
+
+
+
+
+
 \newif\ifgpscalepoints
 \tikzset{gp shift only/.style={%
   \ifgpscalepoints\else shift only\fi%
 }}
-%    \end{macrocode}
-%
-% \begin{macro}{\gppoint}
-%    \begin{macrocode}
 \def\gppoint#1#2{%
   \path[solid] plot[only marks,gp point,mark options={gp shift only},#1] coordinates {#2};%
 }
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gp}
-%    \begin{macrocode}
 \def\gp3point#1#2#3{%
   \path[solid#2] plot[only marks,gp point,mark options={gp shift only},#1] coordinates {#3};%
 }
-%    \end{macrocode}
-% \end{macro}
-%
-%    \begin{macrocode}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \newdimen\gpvcharsize
 \newdimen\gphcharsize
-%    \end{macrocode}
-%
-% \begin{macro}{\gpcalccharsize}
-%    \begin{macrocode}
 \def\gpcalccharsize{%
   \pgfinterruptboundingbox%
   \pgfsys@begininvisible%
@@ -403,12 +261,14 @@
   \pgfsys@endinvisible%
   \endpgfinterruptboundingbox%
 }
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gpdefrectangularnode}
-%    \begin{macrocode}
+
+
+
+
+
+
+
+
 \def\gpdefrectangularnode#1#2#3{%
   \expandafter\gdef\csname pgf@sh@ns@#1\endcsname{rectangle}%
   \expandafter\gdef\csname pgf@sh@np@#1\endcsname{%
@@ -416,48 +276,71 @@
     \def\northeast{#3}%
   }%
   \pgfgettransform\pgf@temp%
+  % once it is defined, no more transformations will be applied, I hope
   \expandafter\xdef\csname pgf@sh@nt@#1\endcsname{\pgf@temp}%
   \expandafter\xdef\csname pgf@sh@pi@#1\endcsname{\pgfpictureid}%
 }
-%    \end{macrocode}
-% \end{macro}
-%
-%    \begin{macrocode}
+
+
+
+
+
+
+
+
+
+
+
 \tikzset{gnuplot/.style={%
   >=stealth',%
   line cap=round,%
   line join=round,%
 }}
+
 \tikzset{gp node left/.style={anchor=mid west,yshift=-.12ex,line width=0pt}}
 \tikzset{gp node center/.style={anchor=mid,yshift=-.12ex,line width=0pt}}
 \tikzset{gp node right/.style={anchor=mid east,yshift=-.12ex,line width=0pt}}
+
+
 \newdimen\gpbasems
 \gpbasems=.4pt
+
+
 \newdimen\gpbaselw
 \gpbaselw=.4pt
+
+
 \colorlet{gpbgfillcolor}{white}
-%    \end{macrocode}
-%
-% \begin{macro}{\gpsetbgcolor}
-%    \begin{macrocode}
+
+
 \def\gpsetbgcolor#1{%
   \pgfutil@definecolor{gpbgfillcolor}{rgb}{#1}%
   \tikzset{tight background,background rectangle/.style={fill=gpbgfillcolor},show background rectangle}%
 }
-%    \end{macrocode}
-% \end{macro}
-%
-%    \begin{macrocode}
+
+
+
 \tikzset{gp refnode/.style={coordinate,yshift=.12ex}}
-%    \end{macrocode}
-%
-% \begin{macro}{\gpbboxborder}
-%    \begin{macrocode}
+
+
+
+
+
+
+
+
+
 \def\gpbboxborder{0mm}
-%    \end{macrocode}
-% \end{macro}
-%
-%    \begin{macrocode}
+
+
+
+
+
+
+
+
+
+
 \tikzset{gp arrow 1/.style={>=latex}}
 \tikzset{gp arrow 2/.style={>=angle 90}}
 \tikzset{gp arrow 3/.style={>=angle 60}}
@@ -470,6 +353,8 @@
 \tikzset{gp arrow 10/.style={>={[}}}
 \tikzset{gp arrow 11/.style={>=)}}
 \tikzset{gp arrow 12/.style={>=(}}
+
+
 \tikzset{gp mark 0/.style={mark size=.5\pgflinewidth,mark=*}}
 \tikzset{gp mark 1/.style={mark=+}}
 \tikzset{gp mark 2/.style={mark=x}}
@@ -486,6 +371,8 @@
 \tikzset{gp mark 13/.style={mark=diamond*}}
 \tikzset{gp mark 14/.style={mark=otimes}}
 \tikzset{gp mark 15/.style={mark=oplus}}
+
+
 \tikzset{gp pattern 0/.style={white}}
 \tikzset{gp pattern 1/.style={pattern=north east lines}}
 \tikzset{gp pattern 2/.style={pattern=north west lines}}
@@ -498,6 +385,8 @@
 \tikzset{gp pattern 9/.style={pattern=fivepointed stars}}
 \tikzset{gp pattern 10/.style={pattern=sixpointed stars}}
 \tikzset{gp pattern 11/.style={pattern=bricks}}
+
+
 \tikzset{gp plot axes/.style=}
 \tikzset{gp plot border/.style=}
 \tikzset{gp plot 0/.style=smooth}
@@ -508,8 +397,13 @@
 \tikzset{gp plot 5/.style=smooth}
 \tikzset{gp plot 6/.style=smooth}
 \tikzset{gp plot 7/.style=smooth}
+
+
 \tikzset{gp lt axes/.style=dotted}
 \tikzset{gp lt border/.style=solid}
+
+
+
 \tikzset{gp lt axes add/.style={}}
 \tikzset{gp lt border add/.style={}}
 \tikzset{gp lt plot 0 add/.style={}}
@@ -528,17 +422,14 @@
 \tikzset{gp lt plot 5/.style={}}
 \tikzset{gp lt plot 6/.style={}}
 \tikzset{gp lt plot 7/.style={}}
+
+
 \colorlet{gp lt color axes}{black!30}
 \colorlet{gp lt color border}{black}
-%    \end{macrocode}
-%
-% \begin{macro}{\gpdashlength}
-%    \begin{macrocode}
+
+
+
 \def\gpdashlength{\pgflinewidth}
-%    \end{macrocode}
-% \end{macro}
-%
-%    \begin{macrocode}
 \tikzset{gp dt 0/.style={solid}}
 \tikzset{gp dt 1/.style={solid}}
 \tikzset{gp dt 2/.style={dash pattern=on 7.5*\gpdashlength off 7.5*\gpdashlength}}
@@ -550,10 +441,8 @@
 \tikzset{gp dt 8/.style={dash pattern=on 1*\gpdashlength off 3.75*\gpdashlength on 11.25*\gpdashlength off 3.75*\gpdashlength on 1*\gpdashlength off 3.75*\gpdashlength}}
 \tikzset{gp dt solid/.style={solid}}
 \tikzset{gp dt axes/.style={dotted}}
-%    \end{macrocode}
-%
-% \begin{macro}{\gpcoloredlines}
-%    \begin{macrocode}
+
+
 \def\gpcoloredlines{%
   \colorlet{gp lt color 0}{red}%
   \colorlet{gp lt color 1}{green}%
@@ -564,12 +453,8 @@
   \colorlet{gp lt color 6}{orange}%
   \colorlet{gp lt color 7}{purple}%
 }
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\gpmonochromelines}
-%    \begin{macrocode}
+
+
 \def\gpmonochromelines{%
   \colorlet{gp lt color 0}{black}%
   \colorlet{gp lt color 1}{black}%
@@ -580,22 +465,20 @@
   \colorlet{gp lt color 6}{black}%
   \colorlet{gp lt color 7}{black}%
 }
-%    \end{macrocode}
-% \end{macro}
-%
-%    \begin{macrocode}
+
+
+
+
+
 \gpcoloredlines
 \gpsetpointsize{4}
 \gpsetlinetype{gp lt solid}
 \gpscalepointsfalse
 \endinput
-\endinput
-%    \end{macrocode}
 
-%
-% \iffalse
+\endinput
+
 %</package>
-% \fi
+%    \end{macrocode}
 %
 % \Finale
-\endinput
